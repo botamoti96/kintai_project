@@ -3,9 +3,9 @@ import Link from 'next/link'
 const Home = () => {
   return (
     <div>
-      まっさらなページです<br/>
-      まっさらなページです<br/>
-      まっさらなページです<br/>
+      まっくろなページです<br/>
+      まっくろなページです<br/>
+      まっくろなページです<br/>
       <Link href="/test">
         Go to Test Page
       </Link>
