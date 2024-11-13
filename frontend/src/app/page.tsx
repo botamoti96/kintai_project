@@ -5,7 +5,7 @@ const Home = () => {
     <div>
       まっくろなページです<br/>
       まっくろなページです<br/>
-      まっくろなページです。。。。。。<br/>
+      まっくろなページです<br/>
       <Link href="/test">
         Go to Test Page
       </Link>
