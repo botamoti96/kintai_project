@@ -3,5 +3,7 @@ services:
     build: ./frontend
     volumes:
       - ./frontend:/frontend
+      - /frontend/node_modules
+      - /frontend/build
     ports:
       - "3000:3000"

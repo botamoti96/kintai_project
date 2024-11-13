@@ -2,7 +2,7 @@ FROM node:22
 
 WORKDIR /frontend
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
