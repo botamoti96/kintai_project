@@ -1,0 +1,13 @@
+.date-column {
+    width: 1px;
+}
+
+.weekday-column {
+    width: 50%;
+}
+
+.note-column {
+    width: 30%;
+    color: #318
+}
+
