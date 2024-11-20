@@ -3,15 +3,15 @@ import Link from 'next/link'
 const Home = () => {
   return (
     <div>
-      まっくろなページです<br/>
-      まっくろなページです<br/>
-      まっくろなページです<br/>
+      example<br/>
+      example<br/>
+      example<br/>
       <Link href="/test">
-        Go to Test Page
+        example
       </Link>
       <br></br>
       <Link href="/test2">
-        テストページ2へ
+      example
       </Link>
     </div>
   );
