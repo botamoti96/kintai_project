@@ -3,15 +3,13 @@ import Link from 'next/link'
 const Home = () => {
   return (
     <div>
-      example<br/>
-      example<br/>
-      example<br/>
+      test<br/>
       <Link href="/test">
-        example
+        リンクのテスト
       </Link>
       <br></br>
-      <Link href="/test2">
-      example
+      <Link href="/login">
+      ログインページのリンク
       </Link>
     </div>
   );
