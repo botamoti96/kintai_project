@@ -4,16 +4,19 @@ const Home = () => {
   const v = 1;
   return (
     <div>
-      まっくろなページです<br/>
-      まっくろなページです<br/>
-      まっくろなページで...す<br/>
-      {v}
+      example<br/>
+      example<br/>
+      example<br/>
       <Link href="/test">
-        Go to Test Page
+        example
       </Link>
       <br></br>
       <Link href="/test2">
-        テストページ2へ
+      example
+      </Link>
+      <br></br>
+      <Link href="/request">
+       申請ページです
       </Link>
       <Link href="/showAttendanceRecord">
         出勤簿ページへ
