@@ -1,13 +1,47 @@
+tr {
+    border: solid 1px #000;
+}
+
+th {
+    border: solid 1px #000;
+}
+
+td {
+    border: solid 1px #000;
+}
+
+
 .date-column {
+    border: solid 1px #000;
     width: 1px;
 }
 
+.workplace {
+    border: solid 1px #000;
+}
+
+.attendance_table {
+    border: solid 1px #000;
+    
+}
+
+.attendance_th {
+    border: solid 1px #000;
+}
+
 .weekday-column {
-    width: 50%;
+    border: solid 1px #000;
+    width: 10%;
 }
 
 .note-column {
-    width: 30%;
-    color: #318
+    width: 25%;
 }
 
+.publicHoliday {
+    background-color: rgba(161, 161, 161, 0.582);
+}
+
+.dayoff {
+    background-color: rgba(87, 165, 255, 0.4);
+}

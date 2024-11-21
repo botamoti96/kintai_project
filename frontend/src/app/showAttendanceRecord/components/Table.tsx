@@ -1,7 +1,9 @@
 "use client"
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useState, useEffect} from "react";
 import CreateTableFunc from "../function/CreateTable";
+
+import "./Table.css"
 
 interface AttendanceProps {
     data: AttendanceRecordType[];
@@ -9,13 +11,23 @@ interface AttendanceProps {
 
 
 const TableComponent = () => {
-    const [selectedYear, setSelectedYear] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
+    const [selectedYear, setSelectedYear] = useState('2024');
+    const [selectedMonth, setSelectedMonth] = useState('11');
+    const holidayJp = require('holiday-jp');
+    const [data, setData] = useState<AttendanceRecordType[]>(CreateTableFunc(new Date(0,0,0), "1"));
 
-    const data = CreateTableFunc(new Date(), "1");
-
+    useEffect(()=>{
+        if(selectedYear != "xxxx" && selectedMonth != "xx"){
+            console.log(selectedYear + "/" + selectedMonth)
+            //月を指定するときは-1しないといけない
+            //1月を表現するなら、new Dateの引数には0と入れる
+            setData(CreateTableFunc(new Date(Number(selectedYear), Number(selectedMonth)-1, 1), "1"));
+        }
+    }, [selectedYear, selectedMonth]);
+    
     const handleSelectedYear = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedYear(event.target.value);
+
     };
 
     const handleSelectedMonth = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -48,7 +60,7 @@ const TableComponent = () => {
                 </select>
             </div>
             <div id="div_record_body">
-                <table border={1}>
+                <table className="attendance_table">
                     <caption>
                         {selectedYear === "" ? "xxxx":selectedYear}年　{selectedMonth === "" ? "xx":selectedMonth}月分    勤務実績通知書
                     </caption>
@@ -61,14 +73,13 @@ const TableComponent = () => {
                             <td colSpan={3}></td>
                             <th>部署名</th>
                             <th colSpan={1}></th>
-                            <td colSpan={1}></td>
                         </tr>
                         <tr className="time-name">
                             <th scope="row" colSpan={3}>就業時間</th>
                             <td className="time" colSpan={2}>9:00 - 18:00</td>
                             <td className="_"> </td>
-                            <th>氏名</th>
-                            <td>氏名入力欄</td>
+                            <th scope="row">氏名</th>
+                            <td className="name_input">氏名入力欄</td>
                         </tr>
                         <tr>
                             <th className="date-column" scope="row" colSpan={1}>日</th>
@@ -81,9 +92,10 @@ const TableComponent = () => {
                             <th className="note-column" scope="row" colSpan={1}>備考</th>
                         </tr>
                         {data.map((record, index) => (
-                            <tr key={index}>
-                                <td>{record.attendanceDate}</td>
-                                <td>{record.dayOfWeek}</td>
+                            //平日、土日、祝日を判定。振替休日
+                            <tr className={record.dayOfWeek==="日" || record.dayOfWeek === "土"?"dayoff":holidayJp.isHoliday(new Date(Number(selectedYear), Number(selectedMonth)-1, Number(record.attendanceDate)))?"publicHoliday" :""} key={index}>
+                                <td className="date-column">{record.attendanceDate}</td>
+                                <td className="weekday-column">{record.dayOfWeek}</td>
                                 <td>{record.startTime}</td>
                                 <td>{record.finishTime}</td>
                                 <td>{record.breakTime}</td>
