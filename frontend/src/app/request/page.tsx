@@ -1,12 +1,14 @@
 import React from "react";
 import Link from 'next/link';
 import styles from "./page.module.css";
-import { Dropdown } from "./Dropdown" ;
+import { Textareas } from "./Textareas" ;
+import { TextareasNote } from "./TextareasNote" ;
 
 
 
 import { NextPage } from "next";
 
+/*申請新規作成ページを作ります*/
 
 //デザイン
 // const style = {color: "black",backgroundColor: "white"
@@ -14,7 +16,8 @@ import { NextPage } from "next";
 // }
 
 const Header = () => {
-  return <h1>申請画面表示予定地です</h1>;
+  return <h1>申請新規作成ページになる予定です
+  </h1>;
 };
 
 
@@ -24,12 +27,16 @@ const Homeback = () => {
   return <Link href="/">ホームに戻る</Link>;
 }
 const requestPage = () => {
-    const aiu = 1;
+    const aiu = 3;
        
     return (
       <div className={styles.all}>
        <Header />
+       <br></br>
        <RequestTable />
+       <br></br>
+    
+      
        <Homeback />
       </div>
     );
@@ -52,20 +59,20 @@ const date = [
 
 //dateTimeを使う意味あるのか不明だけどつかってみている↓
   return(
-    <table className={styles.table}>
+    <table className={styles.table} >
       <thead className={styles.abc}>
         <tr>
           <th scope="row" colSpan={3}> 就業場所 </th>
-          <td colSpan={3}>{date[0].workPlace}</td>
+          <td colSpan={3} >{date[0].workPlace}</td>
           <th scope="row" colSpan={1}> 部署名 </th>
-          <td colSpan={1}>{date[0].departmentName}</td>
+          <td colSpan={2}>{date[0].departmentName}</td>
         </tr>
         
         <tr>
           <th scope="row" colSpan={3}>就業時間</th>
           <td colSpan={3}><time dateTime="2024-11-11">9:00-18:00</time></td>
           <th scope="row" colSpan={1}> 氏名 </th>
-          <td colSpan={1}>{date[0].employeeName}</td>
+          <td colSpan={2}>{date[0].employeeName}</td>
         </tr>
       </thead>   
       <thead className={styles.tdlayout} >   
@@ -73,24 +80,24 @@ const date = [
           <th scope="col">日</th>
           <th scope="col">曜日</th>
           <th scope="col">始業時間</th>
-          <th scope="col">就業時間</th>
+          <th scope="col">終業時間</th>
           <th scope="col">休憩時間</th>
           <th scope="col">実質時間数</th>
           <th scope="col">時間外勤務
             時間数</th>
-          <th scope="col"><Dropdown /></th>
+          <th scope="col" colSpan={2}>備考</th>
         </tr>
       </thead>
       <tbody className={styles.tdlayout}>
         <tr>
-          <td>5</td>
-          <td>火</td>
-          <td>10:00</td>
-          <td>18:00</td>
-          <td>01:00</td>
-          <td>07:00</td>
-          <td> </td>
-          <td>遅刻</td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td><Textareas /></td>
+          <td colSpan={2}><TextareasNote /></td>
         </tr>
       </tbody>
       {/* <tbody>

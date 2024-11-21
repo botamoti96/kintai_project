@@ -15,7 +15,11 @@ const Home = () => {
       </Link>
       <br></br>
       <Link href="/request">
-       申請ページです
+       申請新規作成ページです
+      </Link>
+      <br></br>
+      <Link href="/requestList">
+       申請一覧ページです
       </Link>
     </div>
   );
