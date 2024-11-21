@@ -2,6 +2,7 @@
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
 import {ChangeEvent, useState, useEffect} from "react";
 import CreateTableFunc from "../function/CreateTable";
+import fetchAttendance from "@/app/async/fetchAttendanceTable";
 
 import "./Table.css"
 
@@ -36,6 +37,9 @@ const TableComponent = () => {
 
     return (
         <>
+            <div className="testButton">
+                <button onClick={fetchAttendance}>テスト</button>
+            </div>
             <div id="div_selectmenu">
                 <select name="year" onChange={handleSelectedYear}>
                     <option value="" hidden>年</option>
