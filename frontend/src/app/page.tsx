@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 const Home = () => {
+  const v = 1;
   return (
     <div>
       example<br/>
@@ -20,6 +21,9 @@ const Home = () => {
       <br></br>
       <Link href="/requestList">
        申請一覧ページです
+      </Link>
+      <Link href="/showAttendanceRecord">
+        出勤簿ページへ
       </Link>
     </div>
   );

@@ -1,8 +1,6 @@
 CREATE DATABASE IF NOT EXISTS kintai;
 
-
 use kintai;
-
 
 CREATE TABLE IF NOT EXISTS employee(
     employee_id INT(4) PRIMARY KEY,
@@ -12,7 +10,6 @@ CREATE TABLE IF NOT EXISTS employee(
     workplace VARCHAR(30) NOT NULL,
     admin_flag BOOLEAN NOT NULL
 );
-
 
 CREATE TABLE IF NOT EXISTS attendance(
     attendance_date DATE,
@@ -26,7 +23,6 @@ CREATE TABLE IF NOT EXISTS attendance(
     PRIMARY KEY(attendance_date, employee_id),
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
-
 
 CREATE TABLE IF NOT EXISTS request(
     request_id INT,
@@ -44,6 +40,3 @@ CREATE TABLE IF NOT EXISTS request(
     PRIMARY KEY(request_id, attendance_date),
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
-
-
-
