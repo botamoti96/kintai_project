@@ -20,6 +20,7 @@ const Home = () => {
       <Link href="/requestList">
        申請一覧ページです
       </Link>
+      <br></br>
       <Link href="/showAttendanceRecord">
         出勤簿ページへ
       </Link>
