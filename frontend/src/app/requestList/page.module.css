@@ -1,46 +1,40 @@
-.table{
-    background-color: white;/*背景色*/
-    color: rgba(5, 1, 5, 0.229);/*文字の色*/
-    border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
-    border-collapse: separate;
-    width: 800px;
-    table-layout: fixed;
-   
-    margin: auto;
+.table {
+  background-color: white; /*背景色*/
+  color: rgba(5, 1, 5, 0.229); /*文字の色*/
+  border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
+  border-collapse: separate;
+  width: 800px;
+  table-layout: fixed;
 
-    
-    
-    /*{{ color: "black",backgroundColor: "white", /*width: "50%",*//* border: "1px solid black", borderCollapse: "collapse" }}*/
+  margin: auto;
+
+  /*{{ color: "black",backgroundColor: "white", /*width: "50%",*/ /* border: "1px solid black", borderCollapse: "collapse" }}*/
 }
-.all{
-
-    background-color: antiquewhite;
-    color: darkblue;
-    text-align: center;
+.all {
+  color: darkblue;
+  text-align: center;
 }
 
-.abc{
-    border: 1px solid black;
-    background-color: rgb(140, 192, 140);
-    color: black;
-    border-collapse: collapse;
-    
+.abc {
+  border: 1px solid black;
+  background-color: rgb(140, 192, 140);
+  color: black;
+  border-collapse: collapse;
 }
 
 /*データのレイアウト*/
-.tdlayout{
-    text-align: center;
-    background-color: bisque;
-    color: black;
-    
-    
+.tdlayout {
+  text-align: center;
+  background-color: bisque;
+  color: black;
 }
 /*なぜか承認ラベルに反映されない*/
-.kh{
-    background-color: brown;
-    color: black;
+.kh {
+  background-color: brown;
+  color: black;
+  text-align: left;
 }
 
-.underline{
-    text-decoration: solid;
+.underline {
+  text-decoration: solid;
 }

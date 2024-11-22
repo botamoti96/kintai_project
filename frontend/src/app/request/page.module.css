@@ -1,40 +1,38 @@
-.table{
-    background-color: white;/*背景色*/
-    color: rgba(5, 1, 5, 0.229);/*文字の色*/
-    border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
-    border-collapse: separate;
-    width: 800px;
-    table-layout: fixed;
-   
-    margin: auto;
-    
-    
-    /*{{ color: "black",backgroundColor: "white", /*width: "50%",*//* border: "1px solid black", borderCollapse: "collapse" }}*/
-}
-.all{
+.table {
+  background-color: white; /*背景色*/
+  color: black; /*文字の色*/
+  border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
+  border-collapse: separate;
+  width: 800px;
+  table-layout: fixed;
 
-    background-color: antiquewhite;
-    color: darkblue;
-    text-align: center;
+  margin: auto;
+
+  /*{{ color: "black",backgroundColor: "white", /*width: "50%",*/ /* border: "1px solid black", borderCollapse: "collapse" }}*/
+}
+.all {
+  color: darkblue;
+  text-align: center;
 }
 
-.abc{
-    border: 1px solid black;
-    background-color: rgb(140, 192, 140);
-    color: black;
-    border-collapse: collapse;
-    
+.abc {
+  border: 1px solid black;
+  background-color: rgb(140, 192, 140);
+  color: black;
+  border-collapse: collapse;
 }
 
 /*データのレイアウト*/
-.tdlayout{
-    text-align: center;
-    background-color: bisque;
-    color: black;
-    
-    
+.tdlayout {
+  text-align: center;
+  background-color: bisque;
+  color: black;
 }
 
-.cat{
-    border-radius: 50%;
+.cat {
+  border-radius: 50%;
+}
+
+.black {
+  color: black;
 }

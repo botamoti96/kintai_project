@@ -53,13 +53,13 @@ const RequestTable = () => {
       <thead className={styles.abc}>
         <tr>
           <th scope="row" colSpan={3}>
-            {" "}
-            就業場所{" "}
+            就業場所
           </th>
+
           <td colSpan={3}>{date[0].workPlace}</td>
+
           <th scope="row" colSpan={1}>
-            {" "}
-            部署名{" "}
+            部署名
           </th>
           <td colSpan={2}>{date[0].departmentName}</td>
         </tr>
@@ -72,8 +72,7 @@ const RequestTable = () => {
             <time dateTime="2024-11-11">9:00-18:00</time>
           </td>
           <th scope="row" colSpan={1}>
-            {" "}
-            氏名{" "}
+            氏名
           </th>
           <td colSpan={2}>{date[0].employeeName}</td>
         </tr>

@@ -12,8 +12,6 @@ const Homeback = () => {
   return <Link href="/">ホームに戻る</Link>;
 };
 const requestPage = () => {
-  const aiu = 3;
-
   return (
     <div className={styles.all}>
       <Header />
@@ -79,7 +77,7 @@ const RequestTable = () => {
       {date.map((item, index) => (
         <div key={item.requestId}>
           <table className={styles.table}>
-            <caption>
+            <caption className="black">
               {date[index].year}年 {date[index].month}月 勤務実績通知書
             </caption>
             <thead className={styles.abc}>
@@ -138,7 +136,8 @@ const RequestTable = () => {
             </tbody>
           </table>
           <br></br>
-          <label className="kh">
+          {/*承認されているかの判定↓*/}
+          <div className="kh">
             {(() => {
               if (date[index].isApproved === 0) {
                 return <div>承認待ち</div>;
@@ -148,7 +147,7 @@ const RequestTable = () => {
                 return <div>承認却下</div>;
               }
             })()}
-          </label>
+          </div>
           <br></br>
         </div>
       ))}
