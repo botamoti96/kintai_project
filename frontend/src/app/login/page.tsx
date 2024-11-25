@@ -5,16 +5,6 @@ import Link from "next/link"; // Next.jsのLinkコンポーネントをインポ
 const Login: React.FC = () => {
   return (
     <div style={styles.container}>
-      {/* ウィンドウの右上に配置するボタン */}
-      <div style={styles.header}>
-        <div style={styles.windowButtons}>
-          {/* ウィンドウボタン：黄色、緑、赤 */}
-          <div style={{ ...styles.windowButton, backgroundColor: "yellow" }}></div>
-          <div style={{ ...styles.windowButton, backgroundColor: "green" }}></div>
-          <div style={{ ...styles.windowButton, backgroundColor: "red" }}></div>
-        </div>
-      </div>
-      
       {/* ログインフォームのコンテナ */}
       <div style={styles.formContainer}>
         <h1 style={styles.title}>勤怠管理システム</h1> {/* タイトル */}
@@ -44,7 +34,7 @@ const Login: React.FC = () => {
           </div>
 
           {/* ログインボタンをリンクでラップ */}
-          <Link href="/time_card"> {/* ログイン成功後に遷移するページへリンク */}
+          <Link href="/timeCard"> {/* ログイン成功後に遷移するページへリンク */}
             <button type="button" style={styles.button}>
               ログイン
             </button>
@@ -65,21 +55,6 @@ const styles = {
     flexDirection: "column" as const, // 縦方向のレイアウト
     alignItems: "center", // 横方向中央揃え
     justifyContent: "center", // 縦方向中央揃え
-  },
-  header: {
-    position: "absolute" as const, // 絶対位置で配置
-    top: 10, // 上から10px
-    right: 10, // 右から10px
-  },
-  windowButtons: {
-    display: "flex", // 横並び
-    gap: 8, // ボタン間の間隔
-  },
-  windowButton: {
-    width: 15, // ボタンの横幅
-    height: 15, // ボタンの高さ
-    borderRadius: "50%", // 丸いボタン
-    backgroundColor: "#ccc", // ボタンの色
   },
   formContainer: {
     width: "300px", // フォームの幅
