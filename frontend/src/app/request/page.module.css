@@ -1,38 +1,121 @@
+/* 画面全体のレイアウトの調整用コンテナ */
+.container {
+  font-family: Arial, sans-serif; /* フォント設定 */
+  background-color: #f9f9f9; /* 背景色 */
+  height: 100vh; /* vhで指定することで、高さを画面全体に設定 */
+  display: flex; /* フレックスボックスでレイアウト */
+  flex-direction: column; /* 縦方向のレイアウトを指定 */
+  align-items: center; /* 横方向中央揃え */
+  justify-content: center; /* 縦方向中央揃え */
+}
+
+/* 右上ボタンの配置用 */
+.header {
+  position: absolute;
+  top: 10;
+  right: 10;
+}
+
+.header1 {
+  position: absolute;
+  top: 50%;
+}
+.header2 {
+  position: absolute;
+  bottom: 10%;
+}
+
+.windowButtons {
+  display: flex; /*横並び指定*/
+  gap: 8; /*ボタンの感覚*/
+}
+
+.windowButton {
+  width: 15;
+  height: 15;
+  border-radius: 50%;
+}
+
+/*申請するボタンのレイアウト*/
+.requestButton {
+  border: 0;
+  line-height: 2.5;
+  color: white;
+  padding: 5 20px; /*上下 左右の空間の指定*/
+  font-size: 1rem;
+  text-align: center;
+  text-shadow: 1px 1px 1px #100; /*ボタンの文字の影*/
+  border-radius: 10px;
+  background-color: aquamarine;
+  background-image: linear-gradient(
+    to top left,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 30%,
+    rgba(0, 0, 0, 0)
+  );
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.requestButton:hover {
+  background-color: rgb(0, 255, 200);
+}
+
+.requestButton:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
 .table {
-  background-color: white; /*背景色*/
   color: black; /*文字の色*/
   border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
-  border-collapse: separate;
+  border-collapse: collapse;
   width: 800px;
   table-layout: fixed;
-
   margin: auto;
-
-  /*{{ color: "black",backgroundColor: "white", /*width: "50%",*/ /* border: "1px solid black", borderCollapse: "collapse" }}*/
 }
 .all {
   color: darkblue;
   text-align: center;
+  background-color: #f9f9f9; /*画面全体の背景色*/
 }
 
 .abc {
   border: 1px solid black;
-  background-color: rgb(140, 192, 140);
+
   color: black;
   border-collapse: collapse;
 }
 
 /*データのレイアウト*/
-.tdlayout {
+.thLayout {
   text-align: center;
-  background-color: bisque;
+  background-color: white;
   color: black;
+  border: 1px solid black;
 }
 
-.cat {
-  border-radius: 50%;
+.tdMainLayout {
+  text-align: left;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }
 
-.black {
+.tdLayout {
+  text-align: center;
+  background-color: white;
   color: black;
+  border: 1px solid black;
+}
+
+.input {
+  width: 100%; /*入力フィールドを親要素に合わせる*/
+  border: none;
+  text-align: center;
+}
+
+/*入力フィールドにフォーカスがいっても、アウトラインを表示しないように指定*/
+.input:focus {
+  outline: none;
 }

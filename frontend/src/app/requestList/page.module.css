@@ -1,8 +1,8 @@
 .table {
-  background-color: white; /*背景色*/
+  background-color: black; /*背景色*/
   color: rgba(5, 1, 5, 0.229); /*文字の色*/
   border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
-  border-collapse: separate;
+  border-collapse: collapse;
   width: 800px;
   table-layout: fixed;
 
@@ -23,16 +23,32 @@
 }
 
 /*データのレイアウト*/
-.tdlayout {
+.thLayout {
   text-align: center;
-  background-color: bisque;
+  background-color: white;
   color: black;
+  border: 1px solid black;
 }
-/*なぜか承認ラベルに反映されない*/
-.kh {
-  background-color: brown;
-  color: black;
+
+.tdMainLayout {
   text-align: left;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.tdLayout {
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.kh {
+  background-color: rgba(87, 165, 255, 0.4);
+  color: black;
+
+  text-align: center;
 }
 
 .underline {

@@ -82,62 +82,84 @@ const RequestTable = () => {
             </caption>
             <thead className={styles.abc}>
               <tr>
-                <th scope="row" colSpan={3}>
+                <th scope="row" colSpan={3} className={styles.thLayout}>
                   {" "}
                   就業場所{" "}
                 </th>
-                <td colSpan={3}>SCSK</td>
-                <th scope="row" colSpan={1}>
+                <td colSpan={3} className={styles.tdMainLayout}>
+                  SCSK
+                </td>
+                <th scope="row" colSpan={1} className={styles.thLayout}>
                   {" "}
                   部署名{" "}
                 </th>
-                <td colSpan={2}>情報システム部</td>
+                <td colSpan={2} className={styles.tdMainLayout}>
+                  情報システム部
+                </td>
               </tr>
 
               <tr>
-                <th scope="row" colSpan={3}>
+                <th scope="row" colSpan={3} className={styles.thLayout}>
                   就業時間
                 </th>
-                <td colSpan={3}>
+                <td colSpan={3} className={styles.tdMainLayout}>
                   <time dateTime="2024-11-11">9:00-18:00</time>
                 </td>
-                <th scope="row" colSpan={1}>
+                <th scope="row" colSpan={1} className={styles.thLayout}>
                   {" "}
                   氏名{" "}
                 </th>
-                <td colSpan={2}>田中一郎</td>
+                <td colSpan={2} className={styles.tdMainLayout}>
+                  田中一郎
+                </td>
               </tr>
             </thead>
             <thead className={styles.tdlayout}>
               <tr>
-                <th scope="col">日</th>
-                <th scope="col">曜日</th>
-                <th scope="col">始業時間</th>
-                <th scope="col">終業時間</th>
-                <th scope="col">休憩時間</th>
-                <th scope="col">実質時間数</th>
-                <th scope="col">時間外勤務 時間数</th>
-                <th scope="col" colSpan={2}>
+                <th scope="col" className={styles.thLayout}>
+                  日
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  曜日
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  始業時間
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  終業時間
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  休憩時間
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  実質時間数
+                </th>
+                <th scope="col" className={styles.thLayout}>
+                  時間外勤務 時間数
+                </th>
+                <th scope="col" colSpan={2} className={styles.thLayout}>
                   備考
                 </th>
               </tr>
             </thead>
-            <tbody className={styles.tdlayout}>
+            <tbody className={styles.black}>
               <tr>
-                <td>{date[index].day}</td>
-                <td>{date[index].dayOfWeek}</td>
-                <td>{date[index].startTime}</td>
-                <td>{date[index].finishTime}</td>
-                <td>{date[index].breakTime}</td>
-                <td>{date[index].realTime}</td>
-                <td>{date[index].overTime} </td>
-                <td colSpan={2}>{date[index].note}</td>
+                <td className={styles.thLayout}>{date[index].day}</td>
+                <td className={styles.thLayout}>{date[index].dayOfWeek}</td>
+                <td className={styles.thLayout}>{date[index].startTime}</td>
+                <td className={styles.thLayout}>{date[index].finishTime}</td>
+                <td className={styles.thLayout}>{date[index].breakTime}</td>
+                <td className={styles.thLayout}>{date[index].realTime}</td>
+                <td className={styles.thLayout}>{date[index].overTime} </td>
+                <td colSpan={2} className={styles.thLayout}>
+                  {date[index].note}
+                </td>
               </tr>
             </tbody>
           </table>
           <br></br>
           {/*承認されているかの判定↓*/}
-          <div className="kh">
+          <button className={styles.kh}>
             {(() => {
               if (date[index].isApproved === 0) {
                 return <div>承認待ち</div>;
@@ -147,7 +169,7 @@ const RequestTable = () => {
                 return <div>承認却下</div>;
               }
             })()}
-          </div>
+          </button>
           <br></br>
         </div>
       ))}
