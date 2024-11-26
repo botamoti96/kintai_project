@@ -22,8 +22,6 @@ string connectionString = "Server=localhost;Database=kintai;User=root;Password=r
 // サービスを登録
 builder.Services.AddSingleton(new AttendanceService(connectionString));
 
-builder.Services.AddControllers();
-
 var app = builder.Build();
 
 // CORSミドルウェアを追加
@@ -31,10 +29,6 @@ app.UseCors("AllowSpecificOrigins");
 
 // その他のミドルウェア
 app.UseRouting();
-app.MapControllers();
-
-app.UseRouting();
-
 app.MapControllers();
 
 // 5000番ポートでリッスン

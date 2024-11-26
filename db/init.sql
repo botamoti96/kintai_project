@@ -12,7 +12,10 @@ CREATE TABLE IF NOT EXISTS employee(
 );
 
 CREATE TABLE IF NOT EXISTS attendance(
-    attendance_date DATE,
+    attendance_id INT AUTO INCREMENT,
+    year INT(4),
+    month INT(2),
+    day INT(2),
     employee_id INT(4),
     day_of_week INT(1),
     start_time TIME DEFAULT '09:00:00',
@@ -20,7 +23,7 @@ CREATE TABLE IF NOT EXISTS attendance(
     break_time TIME DEFAULT '01:00:00',
     over_time TIME DEFAULT '00:00:00',
     notes VARCHAR(10),
-    PRIMARY KEY(attendance_date, employee_id),
+    PRIMARY KEY(attendance_id),
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
