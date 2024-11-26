@@ -16,6 +16,47 @@
   right: 10;
 }
 
+.menuBar {
+  position: absolute; /*絶対位置指定*/
+  top: 10; /*上から10px*/
+  left: 10; /* 左から10px*/
+}
+
+.menuIcon {
+  font-size: 30px; /*メニューアイコンのサイズ*/
+  cursor: pointer; /*ポインターカーソルにする*/
+}
+
+.dropdownMenu {
+  position: absolute as const; /* 絶対位置指定*/
+  top: 40px; /*アイコンの下に表示*/
+  left: 0;
+  background-color: #fff; /*背景色*/
+  border-radius: 8px; /*丸みを帯びた角*/
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* シャドウ効果*/
+  width: 200px; /*メニューの幅*/
+  z-index: 1; /* メニューが前面に表示されるようにする*/
+}
+.menuItem {
+  padding: 10px; /*メニューアイテムの内側余白*/
+  border-bottom: 1px solid #ddd; /*メニューアイテムの下に境界線*/
+  cursor: pointer; /*ポインターカーソル*/
+  transition: background-color 0.3s; /* ホバー時のアニメーション*/
+}
+.menuItemHover {
+  background-color: #f0f0f0; /*ホバー時の背景色*/
+}
+
+/*一件の申請をのせるコンテナ*/
+.requestContainer {
+  width: 900px; /*1つの申請の幅*/
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
 .header1 {
   position: absolute;
   top: 50%;
@@ -55,6 +96,7 @@
   );
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
     inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+  margin: 15px;
 }
 
 .requestButton:hover {
