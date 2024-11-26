@@ -17,7 +17,11 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 // MySQL接続文字列
+<<<<<<< HEAD
 string connectionString = "Server=localhost;Database=kintai;User=root;Password=mossan;";
+=======
+string connectionString = "Server=localhost;Database=kintai;User=root;Password=nakasone3;";
+>>>>>>> 9bf2f035c340f1e7e26aa772bf3d17674995d75f
 
 // サービスを登録
 builder.Services.AddSingleton(new AttendanceService(connectionString));

@@ -1,3 +1,76 @@
+/* 画面全体のレイアウトの調整用コンテナ */
+.container {
+  font-family: Arial, sans-serif; /* フォント設定 */
+  background-color: #f9f9f9; /* 背景色 */
+  height: 100vh; /* vhで指定することで、高さを画面全体に設定 */
+  display: flex; /* フレックスボックスでレイアウト */
+  flex-direction: column; /* 縦方向のレイアウトを指定 */
+  align-items: center; /* 横方向中央揃え */
+  justify-content: center; /* 縦方向中央揃え */
+}
+
+.menuBar {
+  position: absolute; /*絶対位置指定*/
+  top: 10; /*上から10px*/
+  left: 10; /* 左から10px*/
+}
+
+.menuIcon {
+  font-size: 30px; /*メニューアイコンのサイズ*/
+  cursor: pointer; /*ポインターカーソルにする*/
+}
+
+.dropdownMenu {
+  position: absolute as const; /* 絶対位置指定*/
+  top: 40px; /*アイコンの下に表示*/
+  left: 0;
+  background-color: #fff; /*背景色*/
+  border-radius: 8px; /*丸みを帯びた角*/
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* シャドウ効果*/
+  width: 200px; /*メニューの幅*/
+  z-index: 1; /* メニューが前面に表示されるようにする*/
+}
+.menuItem {
+  padding: 10px; /*メニューアイテムの内側余白*/
+  border-bottom: 1px solid #ddd; /*メニューアイテムの下に境界線*/
+  cursor: pointer; /*ポインターカーソル*/
+  transition: background-color 0.3s; /* ホバー時のアニメーション*/
+}
+.menuItemHover {
+  background-color: #f0f0f0; /*ホバー時の背景色*/
+}
+
+/* 右上ボタンの配置用 */
+.header {
+  position: absolute;
+  top: 10;
+  right: 10;
+}
+
+.header1 {
+  position: absolute;
+  top: 50%;
+}
+.header2 {
+  position: absolute;
+  bottom: 10%;
+}
+
+.windowButtons {
+  display: flex; /*横並び指定*/
+  gap: 8; /*ボタンの感覚*/
+}
+
+.windowButton {
+  width: 15;
+  height: 15;
+  border-radius: 50%;
+}
+
+.caption {
+  color: black;
+}
+
 .table {
   background-color: black; /*背景色*/
   color: rgba(5, 1, 5, 0.229); /*文字の色*/
@@ -5,7 +78,6 @@
   border-collapse: collapse;
   width: 800px;
   table-layout: fixed;
-
   margin: auto;
 
   /*{{ color: "black",backgroundColor: "white", /*width: "50%",*/ /* border: "1px solid black", borderCollapse: "collapse" }}*/
@@ -20,6 +92,16 @@
   background-color: rgb(140, 192, 140);
   color: black;
   border-collapse: collapse;
+}
+
+/*一件の申請をのせるコンテナ*/
+.requestContainer {
+  width: 900px; /*1つの申請の幅*/
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /*データのレイアウト*/
@@ -44,11 +126,11 @@
   border: 1px solid black;
 }
 
-.kh {
+.label {
   background-color: rgba(87, 165, 255, 0.4);
   color: black;
-
   text-align: center;
+  margin-bottom: 15px;
 }
 
 .underline {

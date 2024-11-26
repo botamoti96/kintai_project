@@ -1,8 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-
-/*申請新規作成ページを作ります*/
 
 //ウィンドウの右上に配置するボタン
 const WindowButton = () => {
@@ -25,33 +25,37 @@ const WindowButton = () => {
   );
 };
 
-/* 
- <div style={styles.menuBar}>
- <div
-   style={styles.menuIcon}
-   onClick={() => setIsMenuOpen(!isMenuOpen)} // メニューアイコンをクリックした時に開閉
- >
-   &#9776;
- </div>
+const MenuBar = () => {
+  // プルダウンメニューの表示状態を管理
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // メニューが開いているかどうか
+  const menuRef = useRef<HTMLDivElement | null>(null); // メニューの参照を保持
+  return (
+    <div>
+      <div className={styles.menuBar}>
+        <div
+          className={styles.menuIcon}
+          onClick={() => setIsMenuOpen(!isMenuOpen)} // メニューアイコンをクリックした時に開閉
+        >
+          &#9776;
+        </div>
 
- {/* プルダウンメニュー 
- {isMenuOpen && (
-   <div ref={menuRef} style={styles.dropdownMenu}>
-     <Link href="../request">
-       <div style={styles.menuItem}>新規申請書の作成</div>
-     </Link>
-     <Link href="../showAttendanceRecord">
-       <div style={styles.menuItem}>出勤簿履歴表示</div>
-     </Link>
-     <Link href="../requestList">
-       <div style={styles.menuItem}>申請履歴表示</div>
-     </Link>
-   </div>
- )}
-</div>*/
-
-const menuBar = () => {
-  return <div></div>;
+        {/* プルダウンメニュー */}
+        {isMenuOpen && (
+          <div ref={menuRef} className={styles.dropdownMenu}>
+            <Link href="../time_card">
+              <div className={styles.menuItem}>出退勤打刻</div>
+            </Link>
+            <Link href="../showAttendanceRecord">
+              <div className={styles.menuItem}>出勤簿履歴表示</div>
+            </Link>
+            <Link href="../requestList">
+              <div className={styles.menuItem}>申請履歴表示</div>
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 const Homeback = () => {
@@ -59,19 +63,20 @@ const Homeback = () => {
 };
 
 const requestPage = () => {
-  const aiu = 3;
-
   return (
     <>
       <div className={styles.container}>
+        <MenuBar />
         <div className={styles.header}>
           <WindowButton />
         </div>
         <br></br>
-        <div>
+        <div className={styles.requestContainer}>
           <RequestTable />
+          <div>
+            <button className={styles.requestButton}>申請する</button>
+          </div>
         </div>
-        <button className={styles.requestButton}>申請する</button>
         <br></br>
         <div className={styles.header2}>
           <Homeback />

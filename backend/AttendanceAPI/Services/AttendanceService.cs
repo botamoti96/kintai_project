@@ -34,7 +34,9 @@ namespace AttendanceAPI.Services
                             FinishTime = reader.GetTimeSpan("finish_time"),
                             BreakTime = reader.GetTimeSpan("break_time"),
                             OverTime = reader.GetTimeSpan("over_time"),
-                            Notes = reader.GetString("notes")
+                            Notes = reader.IsDBNull(reader.GetOrdinal("notes"))
+                            ? ""
+                            : reader.GetString("notes")
                         });
                     }
                 }
