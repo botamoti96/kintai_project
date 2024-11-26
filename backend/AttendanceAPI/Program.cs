@@ -17,12 +17,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 // MySQL接続文字列
-string connectionString = "Server=localhost;Database=kintai;User=root;Password=root;";
+string connectionString = "Server=localhost;Database=kintai;User=root;Password=mossan;";
 
 // サービスを登録
 builder.Services.AddSingleton(new AttendanceService(connectionString));
-
-builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -31,10 +29,11 @@ app.UseCors("AllowSpecificOrigins");
 
 // その他のミドルウェア
 app.UseRouting();
-app.MapControllers();
 
-app.UseRouting();
+// APIエンドポイントを定義（例: トップページのエンドポイント）
+app.MapGet("/", () => "Welcome to the Attendance API!");
 
+// コントローラーエンドポイントを設定
 app.MapControllers();
 
 // 5000番ポートでリッスン
