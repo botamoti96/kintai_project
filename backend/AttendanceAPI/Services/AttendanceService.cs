@@ -13,6 +13,7 @@ namespace AttendanceAPI.Services
             _connectionString = connectionString;
         }
 
+        // 出勤データを取得
         public List<Attendance> GetAllAttendances()
         {
             var attendances = new List<Attendance>();
@@ -41,6 +42,28 @@ namespace AttendanceAPI.Services
                 }
             }
             return attendances;
+        }
+
+        // ログイン認証用メソッド
+        public (string employeeNumber, string password) GetUserCredentials(string employeeNumber)
+        {
+            string password = null;
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                // SQLクエリで指定された社員番号に対応するパスワードを取得
+                var command = new MySqlCommand("SELECT password FROM users WHERE employee_number = @employeeNumber", connection);
+                command.Parameters.AddWithValue("@employeeNumber", employeeNumber);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        password = reader.GetString("password"); // パスワードを取得
+                    }
+                }
+            }
+            return (employeeNumber, password);
         }
     }
 }

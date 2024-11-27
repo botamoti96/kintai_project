@@ -4,7 +4,7 @@ using AttendanceAPI.Services;
 namespace AttendanceAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/attendance")]
     public class AttendanceController : ControllerBase
     {
         private readonly AttendanceService _attendanceService;

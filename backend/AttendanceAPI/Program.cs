@@ -35,6 +35,11 @@ app.UseCors("AllowSpecificOrigins");
 
 // その他のミドルウェア
 app.UseRouting();
+
+// APIエンドポイントを定義（例: トップページのエンドポイント）
+app.MapGet("/", () => "Welcome to the Attendance API!");
+
+// コントローラーエンドポイントを設定
 app.MapControllers();
 
 // 5000番ポートでリッスン
