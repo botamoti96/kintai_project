@@ -19,13 +19,17 @@ namespace AttendanceAPI.Services
             using(var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "SELECT employee_id FROM employee WHERE employee_name = @employeeName";
+                string query = "SELECT employee_id FROM employee WHERE employee_name = @name";
+                Console.WriteLine(userName);
                 using(var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.Add(userName);
+                    command.Parameters.AddWithValue("@name", userName);
+                    Console.WriteLine(command.CommandText);
                     using(var reader = command.ExecuteReader())
                     {
-                        id = reader.GetInt16("user_id");
+                        if(reader.Read()){
+                            id = reader.GetInt32("employee_id");
+                        }
                     }
                 }
             }
@@ -38,22 +42,20 @@ namespace AttendanceAPI.Services
             var attendances = new List<Attendance>();
             using (var connection = new MySqlConnection(_connectionString)){
                 connection.Open();
-                string query = "SELECT attendance_date FROM attendance WHERE user_id = @userId && year = @year && month = @month";
-                using(var command = new MySqlCommand(query, connection)){
-                    command.Parameters.Add(userId);
-                    command.Parameters.Add(year);
-                    command.Parameters.Add(month);
+                string query = "SELECT day, day_of_week, start_time, finish_time, break_time, over_time, notes FROM attendance WHERE employee_id = @userId && year = @year && month = @month";
+                using(var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+                    command.Parameters.AddWithValue("@year", year);
+                    command.Parameters.AddWithValue("@month", month);
+                    Console.WriteLine(command.CommandText);
                     using(var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             attendances.Add(new Attendance
                             {
-                                AttendanceId = reader.GetInt32("attendance_id"),
-                                Year = reader.GetString("year"),
-                                Month = reader.GetString("month"),
                                 Day = reader.GetString("day"),
-                                EmployeeId = reader.GetInt32("employee_id"),
                                 DayOfWeek = reader.GetInt32("day_of_week"),
                                 StartTime = reader.GetTimeSpan("start_time"),
                                 FinishTime = reader.GetTimeSpan("finish_time"),

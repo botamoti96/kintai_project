@@ -2,6 +2,10 @@ CREATE DATABASE IF NOT EXISTS kintai;
 
 use kintai;
 
+CREATE USER 'kintaiu'@'localhost' IDENTIFIED BY 'kintaip';
+
+GRANT ALL PRIVILEGES ON kintai.* TO 'kintaiu'@'localhost';
+
 CREATE TABLE IF NOT EXISTS employee(
     employee_id INT(4) PRIMARY KEY,
     employee_name VARCHAR(30) NOT NULL,

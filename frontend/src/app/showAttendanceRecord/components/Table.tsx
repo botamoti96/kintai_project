@@ -2,7 +2,7 @@
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
 import {ChangeEvent, useState, useEffect} from "react";
 import CreateTableFunc from "../function/CreateTable";
-import fetchAttendance from "@/app/async/fetchAttendanceTable";
+import fetchAttendance from "@/app/async/fetchAttendance";
 
 import "./Table.css"
 
@@ -23,7 +23,6 @@ const TableComponent = () => {
     
     const handleSelectedYear = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedYear(event.target.value);
-
     };
 
     const handleSelectedMonth = (event: ChangeEvent<HTMLSelectElement>) => {

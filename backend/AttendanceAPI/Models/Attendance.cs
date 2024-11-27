@@ -12,6 +12,6 @@ namespace AttendanceAPI.Models
         public TimeSpan FinishTime { get; set; }
         public TimeSpan BreakTime { get; set; }
         public TimeSpan OverTime { get; set; }
-        public string? Notes { get; set; }
+        public string Notes { get; set; } = "";
     }
 }
