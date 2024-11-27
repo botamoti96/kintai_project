@@ -22,6 +22,7 @@ namespace RequestAPI.Controllers
         {
             var requests = _requestService.GetAllRequests();
             return Ok(requests);
+            //新しいもでるを入れる
         }
     }
 }

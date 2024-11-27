@@ -5,12 +5,12 @@ import Link from "next/link"; // Next.jsのLinkコンポーネントを使用
 
 // 時間を表示するカスタムフック
 const useCurrentTime = () => {
-  const [currentTime, setCurrentTime] = useState<string>(''); // 現在時刻の状態
+  const [currentTime, setCurrentTime] = useState<string>(""); // 現在時刻の状態
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      setCurrentTime(now.toLocaleTimeString('en-GB', { hour12: false })); // 時刻をHH:MM:SSの形式で取得
+      setCurrentTime(now.toLocaleTimeString("en-GB", { hour12: false })); // 時刻をHH:MM:SSの形式で取得
     }, 1000); // 1秒ごとに現在時刻を更新
 
     return () => clearInterval(interval); // クリーンアップ関数でインターバルをクリア
@@ -53,14 +53,15 @@ const TimeCard: React.FC = () => {
 
   // 退勤ボタンが押された時の処理
   const handleFinishClick = () => {
-    if (!isFinished) { // 退勤ボタンがまだ押されていない場合
+    if (!isFinished) {
+      // 退勤ボタンがまだ押されていない場合
       setFinishTime(currentTime); // 退勤時刻を保存
       setIsFinished(true); // 退勤状態を「true」に設定
 
       // 退勤後、10秒後に状態を初期化
       setTimeout(() => {
         // 10秒後に出勤・退勤の時刻と状態をリセット
-        setStartTime(null); 
+        setStartTime(null);
         setFinishTime(null);
         setIsStarted(false);
         setIsFinished(false);
@@ -99,13 +100,13 @@ const TimeCard: React.FC = () => {
         {/* プルダウンメニュー */}
         {isMenuOpen && (
           <div ref={menuRef} style={styles.dropdownMenu}>
-            <Link href="/create-request">
+            <Link href="../request">
               <div style={styles.menuItem}>新規申請書の作成</div>
             </Link>
-            <Link href="/attendance-history">
+            <Link href="../showAttendanceRecord">
               <div style={styles.menuItem}>出勤簿履歴表示</div>
             </Link>
-            <Link href="/request-history">
+            <Link href="../requestList">
               <div style={styles.menuItem}>申請履歴表示</div>
             </Link>
           </div>
