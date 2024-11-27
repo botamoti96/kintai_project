@@ -1,4 +1,5 @@
 using AttendanceAPI.Services;
+using RequestAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +18,15 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 // MySQL接続文字列
-string connectionString = "Server=localhost;Database=kintai;User=root;Password=nakasone3;";
+string connectionString = "Server=localhost;Database=kintai;User=kintaiu;Password=kintaip;";
 
 // サービスを登録
-builder.Services.AddSingleton(new AttendanceService(connectionString));
+builder.Services.AddScoped<AttendanceService>(provider =>
+    new AttendanceService(connectionString));
+
+// RequestService用の接続文字列をIConfigurationから取得して渡す
+builder.Services.AddScoped<RequestService>(provider =>
+    new RequestService(connectionString)); // connectionStringを渡す
 
 var app = builder.Build();
 

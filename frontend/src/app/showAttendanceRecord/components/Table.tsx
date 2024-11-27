@@ -2,14 +2,9 @@
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
 import {ChangeEvent, useState, useEffect} from "react";
 import CreateTableFunc from "../function/CreateTable";
-import fetchAttendance from "@/app/async/fetchAttendanceTable";
+import fetchAttendance from "@/app/async/fetchAttendance";
 
 import "./Table.css"
-
-interface AttendanceProps {
-    data: AttendanceRecordType[];
-  }
-
 
 const TableComponent = () => {
     const [selectedYear, setSelectedYear] = useState('2024');
@@ -19,7 +14,7 @@ const TableComponent = () => {
 
     useEffect(()=>{
         if(selectedYear != "xxxx" && selectedMonth != "xx"){
-            console.log(selectedYear + "/" + selectedMonth)
+            console.log(selectedYear + "/" + selectedMonth);
             //月を指定するときは-1しないといけない
             //1月を表現するなら、new Dateの引数には0と入れる
             setData(CreateTableFunc(new Date(Number(selectedYear), Number(selectedMonth)-1, 1), "1"));
@@ -28,17 +23,21 @@ const TableComponent = () => {
     
     const handleSelectedYear = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedYear(event.target.value);
-
     };
 
     const handleSelectedMonth = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedMonth(event.target.value);
     };
 
+    const handleTestButton = () => {
+        const attendances = fetchAttendance();
+        console.log(attendances);
+    }
+
     return (
         <>
             <div className="testButton">
-                <button onClick={fetchAttendance}>テスト</button>
+                <button onClick={handleTestButton}>テスト</button>
             </div>
             <div id="div_selectmenu">
                 <select name="year" onChange={handleSelectedYear}>
