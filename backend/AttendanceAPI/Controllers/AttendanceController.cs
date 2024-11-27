@@ -17,5 +17,14 @@ namespace AttendanceAPI.Controllers {
             var attendances = _attendanceService.GetAllAttendances();
             return Ok(attendances);
         }
+
+
+        [HttpGet]
+        [Route("monthly")]
+        public IActionResult GetMonthlyAttendances(string userName, int year, int month){
+            var userId = _attendanceService.GetUserId(userName);
+            var attendances = _attendanceService.GetMonthlyAttendance(userId, year, month);
+            return Ok(attendances);
+        }
     }
 }

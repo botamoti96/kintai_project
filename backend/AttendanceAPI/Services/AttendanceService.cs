@@ -8,7 +8,6 @@ namespace AttendanceAPI.Services
     public class AttendanceService 
     {
         private readonly string _connectionString;
-
         public AttendanceService(string connectionString) 
         {
             _connectionString = connectionString;
@@ -30,6 +29,7 @@ namespace AttendanceAPI.Services
                     }
                 }
             }
+            Console.WriteLine("id:" +id);
             return id;
         }
 
@@ -43,17 +43,32 @@ namespace AttendanceAPI.Services
                     command.Parameters.Add(userId);
                     command.Parameters.Add(year);
                     command.Parameters.Add(month);
-                    using(var reader = command.)
+                    using(var reader = command.ExecuteReader())
                     {
-                        
+                        while (reader.Read())
+                        {
+                            attendances.Add(new Attendance
+                            {
+                                AttendanceId = reader.GetInt32("attendance_id"),
+                                Year = reader.GetString("year"),
+                                Month = reader.GetString("month"),
+                                Day = reader.GetString("day"),
+                                EmployeeId = reader.GetInt32("employee_id"),
+                                DayOfWeek = reader.GetInt32("day_of_week"),
+                                StartTime = reader.GetTimeSpan("start_time"),
+                                FinishTime = reader.GetTimeSpan("finish_time"),
+                                BreakTime = reader.GetTimeSpan("break_time"),
+                                OverTime = reader.GetTimeSpan("over_time"),
+                                Notes = reader.GetString("notes")
+                            });
+                        }
                     }
                 }
-                
-                
             }
+            return attendances;
         }
 
-        public List<Attendance> GetAllAttendances(string year, string month)
+        public List<Attendance> GetAllAttendances()
         {
             var attendances = new List<Attendance>();
             using (var connection = new MySqlConnection(_connectionString))
@@ -66,21 +81,22 @@ namespace AttendanceAPI.Services
                     {
                         attendances.Add(new Attendance
                         {
-                            AttendanceDate = reader.GetDateTime("attendance_date"),
-                            EmployeeId = reader.GetInt32("employee_id"),
-                            DayOfWeek = reader.GetInt32("day_of_week"),
-                            StartTime = reader.GetTimeSpan("start_time"),
-                            FinishTime = reader.GetTimeSpan("finish_time"),
-                            BreakTime = reader.GetTimeSpan("break_time"),
-                            OverTime = reader.GetTimeSpan("over_time"),
-                            Notes = reader.GetString("notes")
+                                AttendanceId = reader.GetInt32("attendance_id"),
+                                Year = reader.GetString("year"),
+                                Month = reader.GetString("month"),
+                                Day = reader.GetString("day"),
+                                EmployeeId = reader.GetInt32("employee_id"),
+                                DayOfWeek = reader.GetInt32("day_of_week"),
+                                StartTime = reader.GetTimeSpan("start_time"),
+                                FinishTime = reader.GetTimeSpan("finish_time"),
+                                BreakTime = reader.GetTimeSpan("break_time"),
+                                OverTime = reader.GetTimeSpan("over_time"),
+                                Notes =  reader.GetString("notes")
                         });
                     }
                 }
             }
             return attendances;
         }
-
-        
     }
 }
