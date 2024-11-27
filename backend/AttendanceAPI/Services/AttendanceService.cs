@@ -13,9 +13,6 @@ namespace AttendanceAPI.Services
             _connectionString = connectionString;
         }
 
-<<<<<<< HEAD
-        // 出勤データを取得
-=======
         public int GetUserId(string userName)
         {
             int id=0;
@@ -71,7 +68,6 @@ namespace AttendanceAPI.Services
             return attendances;
         }
 
->>>>>>> feature/createBackend
         public List<Attendance> GetAllAttendances()
         {
             var attendances = new List<Attendance>();
