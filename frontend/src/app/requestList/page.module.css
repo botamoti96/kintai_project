@@ -9,13 +9,6 @@
   justify-content: center; /* 縦方向中央揃え */
 }
 
-/* 右上ボタンの配置用 */
-.header {
-  position: absolute;
-  top: 10;
-  right: 10;
-}
-
 .menuBar {
   position: absolute; /*絶対位置指定*/
   top: 10; /*上から10px*/
@@ -47,14 +40,11 @@
   background-color: #f0f0f0; /*ホバー時の背景色*/
 }
 
-/*一件の申請をのせるコンテナ*/
-.requestContainer {
-  width: 900px; /*1つの申請の幅*/
-  padding: 25px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
+/* 右上ボタンの配置用 */
+.header {
+  position: absolute;
+  top: 10;
+  right: 10;
 }
 
 .header1 {
@@ -77,56 +67,41 @@
   border-radius: 50%;
 }
 
-/*申請するボタンのレイアウト*/
-.requestButton {
-  border: 0;
-  line-height: 2.5;
-  color: white;
-  padding: 5 20px; /*上下 左右の空間の指定*/
-  font-size: 1rem;
-  text-align: center;
-  text-shadow: 1px 1px 1px #100; /*ボタンの文字の影*/
-  border-radius: 10px;
-  background-color: aquamarine;
-  background-image: linear-gradient(
-    to top left,
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2) 30%,
-    rgba(0, 0, 0, 0)
-  );
-  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 3px rgba(0, 0, 0, 0.6);
-  margin: 15px;
-}
-
-.requestButton:hover {
-  background-color: rgb(0, 255, 200);
-}
-
-.requestButton:active {
-  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+.caption {
+  color: black;
 }
 
 .table {
-  color: black; /*文字の色*/
+  background-color: black; /*背景色*/
+  color: rgba(5, 1, 5, 0.229); /*文字の色*/
   border: 1px solid black; /*枠の線の太さ、線の種類、線の色の指定*/
   border-collapse: collapse;
   width: 800px;
   table-layout: fixed;
   margin: auto;
+
+  /*{{ color: "black",backgroundColor: "white", /*width: "50%",*/ /* border: "1px solid black", borderCollapse: "collapse" }}*/
 }
 .all {
   color: darkblue;
   text-align: center;
-  background-color: #f9f9f9; /*画面全体の背景色*/
 }
 
 .abc {
   border: 1px solid black;
-
+  background-color: rgb(140, 192, 140);
   color: black;
   border-collapse: collapse;
+}
+
+/*一件の申請をのせるコンテナ*/
+.requestContainer {
+  width: 900px; /*1つの申請の幅*/
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /*データのレイアウト*/
@@ -151,13 +126,13 @@
   border: 1px solid black;
 }
 
-.input {
-  width: 100%; /*入力フィールドを親要素に合わせる*/
-  border: none;
+.label {
+  background-color: rgba(87, 165, 255, 0.4);
+  color: black;
   text-align: center;
+  margin-bottom: 15px;
 }
 
-/*入力フィールドにフォーカスがいっても、アウトラインを表示しないように指定*/
-.input:focus {
-  outline: none;
+.underline {
+  text-decoration: solid;
 }

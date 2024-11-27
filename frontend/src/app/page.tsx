@@ -4,19 +4,21 @@ const Home = () => {
   const v = 1;
   return (
     <div>
-      example<br/>
-      example<br/>
-      example<br/>
+      test<br/>
       <Link href="/test">
-        example
+        リンクのテスト
       </Link>
       <br></br>
-      <Link href="/test2">
-      example
+      <Link href="/login">
+      ログインページのリンク
       </Link>
       <br></br>
       <Link href="/request">
-       申請ページです
+       申請新規作成ページです
+      </Link>
+      <br></br>
+      <Link href="/requestList">
+       申請一覧ページです
       </Link>
       <br></br>
       <Link href="/showAttendanceRecord">

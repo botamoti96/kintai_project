@@ -2080,19 +2080,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\higak\\.nuget\\packages\\": {}
+    "C:\\Users\\suzum\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\higak\\reactapp\\kintai\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
+      "projectUniqueName": "C:\\studies\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
       "projectName": "AttendanceAPI",
-      "projectPath": "C:\\Users\\higak\\reactapp\\kintai\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
-      "packagesPath": "C:\\Users\\higak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\higak\\reactapp\\kintai\\backend\\AttendanceAPI\\obj\\",
+      "projectPath": "C:\\studies\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
+      "packagesPath": "C:\\Users\\suzum\\.nuget\\packages\\",
+      "outputPath": "C:\\studies\\kintai_project\\backend\\AttendanceAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\higak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\suzum\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
