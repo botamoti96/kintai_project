@@ -1,4 +1,5 @@
 using AttendanceAPI.Services;
+using RequestAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +21,12 @@ builder.Services.AddControllers();
 string connectionString = "Server=localhost;Database=kintai;User=root;Password=nakasone3;";
 
 // サービスを登録
-builder.Services.AddSingleton(new AttendanceService(connectionString));
+builder.Services.AddScoped<AttendanceService>(provider =>
+    new AttendanceService(connectionString));
 
-builder.Services.AddControllers();
+// RequestService用の接続文字列をIConfigurationから取得して渡す
+builder.Services.AddScoped<RequestService>(provider =>
+    new RequestService(connectionString)); // connectionStringを渡す
 
 var app = builder.Build();
 
@@ -31,10 +35,6 @@ app.UseCors("AllowSpecificOrigins");
 
 // その他のミドルウェア
 app.UseRouting();
-app.MapControllers();
-
-app.UseRouting();
-
 app.MapControllers();
 
 // 5000番ポートでリッスン
