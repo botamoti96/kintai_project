@@ -109,6 +109,9 @@ const TimeCard: React.FC = () => {
             <Link href="../requestList">
               <div style={styles.menuItem}>申請履歴表示</div>
             </Link>
+            <Link href="/logout">
+              <div style={styles.menuItem}>ログアウト</div>
+            </Link>
           </div>
         )}
       </div>

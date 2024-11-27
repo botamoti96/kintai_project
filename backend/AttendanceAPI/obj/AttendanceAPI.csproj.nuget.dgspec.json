@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\studies\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\suzum\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\mossa\\Downloads\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\mossa\\Downloads\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mossa\\Downloads\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
+        "projectName": "AttendanceAPI",
+        "projectPath": "C:\\Users\\mossa\\Downloads\\kintai_project\\backend\\AttendanceAPI\\AttendanceAPI.csproj",
+        "packagesPath": "C:\\Users\\mossa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mossa\\Downloads\\kintai_project\\backend\\AttendanceAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\mossa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> 59cfa2618a055311592f1d7484612508dd21969a
         ],
         "originalTargetFrameworks": [
           "net8.0"
