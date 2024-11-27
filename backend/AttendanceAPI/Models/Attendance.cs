@@ -2,7 +2,10 @@ namespace AttendanceAPI.Models
 {
     public class Attendance
     {
-        public DateTime AttendanceDate { get; set; }
+        public int AttendanceId { get; set; }
+        public string Year { get; set; } = "";
+        public string Month { get; set; } = "";
+        public string Day { get; set; } = "";
         public int EmployeeId { get; set; }
         public int DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }

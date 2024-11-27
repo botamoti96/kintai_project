@@ -1,6 +1,5 @@
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
 
-
 const CreateTableFunc = (date: Date, id: string) => {
     //表示したい次の月の0日を指定すると、表示したい月の最終日が何日なのかわかる
     const lastDay = new Date(date.getFullYear(), date.getMonth()+1, 0)
