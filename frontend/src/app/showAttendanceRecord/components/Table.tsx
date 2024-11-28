@@ -15,9 +15,7 @@ const TableComponent = () => {
     useEffect(()=>{
         if(selectedYear != "xxxx" && selectedMonth != "xx"){
             console.log(selectedYear + "/" + selectedMonth);
-            //月を指定するときは-1しないといけない
-            //1月を表現するなら、new Dateの引数には0と入れる
-            setData(CreateTableFunc(new Date(Number(selectedYear), Number(selectedMonth)-1, 1), "1"));
+            setData(CreateTableFunc(Number(selectedYear), Number(selectedMonth) , "1"));
         }
     }, [selectedYear, selectedMonth]);
     
