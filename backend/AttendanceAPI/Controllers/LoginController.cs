@@ -65,12 +65,12 @@ public class LoginController : ControllerBase
 
 public class RegisterRequest
 {
-    public string EmployeeId { get; set; }
-    public string Password { get; set; }
+    public string EmployeeId { get; set; } = "";
+    public string Password { get; set; } = "";
 }
 
 public class LoginRequest
 {
-    public string EmployeeId { get; set; }
-    public string Password { get; set; }
+    public string EmployeeId { get; set; } = "";
+    public string Password { get; set; } = "";
 }
