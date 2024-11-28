@@ -105,7 +105,11 @@ namespace AttendanceAPI.Services
         // ログイン認証用メソッド
         public (string employeeNumber, string password) GetUserCredentials(string employeeNumber)
         {
+<<<<<<< HEAD
             string? password = null;
+=======
+            string password = "";
+>>>>>>> ed6f44eb162758d8cdd4d8c203020fc7281fbe81
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
