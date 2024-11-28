@@ -4,7 +4,7 @@ using BCrypt.Net; // パスワードのハッシュ化に必要
 
 namespace YourNamespace
 {
-    [Route("api/[controller]")]
+    [Route("api/login")]
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -14,12 +14,13 @@ namespace YourNamespace
         [HttpPost]
         public IActionResult Post([FromBody] LoginRequest loginRequest)
         {
+            Console.WriteLine("ログイン処理開始します");
             try
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
-                    var command = new MySqlCommand("SELECT * FROM Users WHERE EmployeeId = @EmployeeId", connection);
+                    var command = new MySqlCommand("SELECT * FROM employee WHERE EmployeeId = @EmployeeId", connection);
                     command.Parameters.AddWithValue("@EmployeeId", loginRequest.EmployeeId);
 
                     var reader = command.ExecuteReader();
@@ -30,15 +31,18 @@ namespace YourNamespace
 
                         if (BCrypt.Net.BCrypt.Verify(loginRequest.Password, storedPasswordHash))
                         {
+                            Console.WriteLine(loginRequest.EmployeeId + " " + loginRequest.Password + "ログイン成功しました");
                             return Ok(new { message = "ログイン成功" });
                         }
                         else
                         {
+                            Console.WriteLine(loginRequest.EmployeeId + " " + loginRequest.Password + "ログイン失敗しました");
                             return Unauthorized(new { message = "パスワードが間違っています" });
                         }
                     }
                     else
                     {
+                        Console.WriteLine("エラーが出ました");
                         return NotFound(new { message = "社員番号が存在しません" });
                     }
                 }

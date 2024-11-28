@@ -103,10 +103,10 @@ const TimeCard: React.FC = () => {
               <div style={styles.menuItem}>新規申請書の作成</div>
             </Link>
             <Link href="/attendance-history">
-              <div style={styles.menuItem}>出勤簿履歴表示</div>
+              <div style={styles.menuItem}>出勤簿履歴の表示</div>
             </Link>
             <Link href="/request-history">
-              <div style={styles.menuItem}>申請履歴表示</div>
+              <div style={styles.menuItem}>申請履歴の表示</div>
             </Link>
             <Link href="/logout">
               <div style={styles.menuItem}>ログアウト</div>

@@ -19,6 +19,10 @@ const Login: React.FC = () => {
               style={styles.input}
               placeholder="社員番号を入力してください" // プレースホルダー
             />
+            {/* 社員番号をお忘れですか？リンクを追加 */}
+            <div style={styles.forgotLink}>
+              <Link href="/forgotEmployeeID">社員番号をお忘れですか？</Link>
+            </div>
           </div>
 
           {/* パスワードの入力フィールド */}
@@ -31,6 +35,10 @@ const Login: React.FC = () => {
               style={styles.input}
               placeholder="パスワードを入力してください" // プレースホルダー
             />
+            {/* パスワードをお忘れですか？リンクを追加 */}
+            <div style={styles.forgotLink}>
+              <Link href="/forgotPassword">パスワードをお忘れですか？</Link>
+            </div>
           </div>
 
           {/* ログインボタンをリンクでラップ */}
@@ -83,6 +91,11 @@ const styles = {
     border: "1px solid #ccc", // 枠線の色
     borderRadius: "4px", // 角を丸く
     fontSize: "14px", // フォントサイズ
+  },
+  forgotLink: {
+    textAlign: "right" as const, // 右寄せ
+    fontSize: "12px", // フォントサイズを小さく
+    marginTop: "5px", // 少し余白を追加
   },
   button: {
     width: "100%", // ボタンの幅を親要素に合わせる
