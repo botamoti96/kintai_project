@@ -1,6 +1,6 @@
 export default interface AttendanceRecordType {
+    className : string,
     attendanceDate : string,
-    employeeId : string,
     dayOfWeek : string,
     startTime : string,
     finishTime : string,
