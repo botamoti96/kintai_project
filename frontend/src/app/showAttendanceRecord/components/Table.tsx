@@ -2,23 +2,31 @@
 import AttendanceRecordType from "@/app/types/AttendanceRecordType";
 import {ChangeEvent, useState, useEffect} from "react";
 import CreateTableFunc from "../function/CreateTable";
-import fetchAttendance from "@/app/async/fetchAttendance";
-
 import "./Table.css"
+import fetchMonthlyAttendance from "@/app/async/fetchMonthlyAttendance";
+import AttendanceTableType from "@/app/types/AttendanceTableType";
 
 const TableComponent = () => {
     const [selectedYear, setSelectedYear] = useState('2024');
     const [selectedMonth, setSelectedMonth] = useState('11');
-    const holidayJp = require('holiday-jp');
-    const [data, setData] = useState<AttendanceRecordType[]>(CreateTableFunc(new Date(0,0,0), "1"));
+
+    const [monthlyData, setMonthlyData] = useState<AttendanceTableType[]>([]);
+    const [data, setData] = useState<AttendanceRecordType[]>([]);
 
     useEffect(()=>{
-        if(selectedYear != "xxxx" && selectedMonth != "xx"){
-            console.log(selectedYear + "/" + selectedMonth);
-            setData(CreateTableFunc(Number(selectedYear), Number(selectedMonth) , "1"));
+        const handleFetchMonthlyAttendance = async ()=>{
+            if(selectedYear != "xxxx" && selectedMonth != "xx"){
+                console.log(selectedYear + "/" + selectedMonth);
+                setMonthlyData(await fetchMonthlyAttendance("田中エヌ太", Number(selectedYear), Number(selectedMonth)));
+            };
         }
+        handleFetchMonthlyAttendance();
+        console.log("a");
     }, [selectedYear, selectedMonth]);
     
+    useEffect(()=>{
+        setData(CreateTableFunc(monthlyData, selectedYear, selectedMonth));
+    },[monthlyData]);
     const handleSelectedYear = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedYear(event.target.value);
     };
@@ -26,16 +34,10 @@ const TableComponent = () => {
     const handleSelectedMonth = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedMonth(event.target.value);
     };
-
-    const handleTestButton = () => {
-        const attendances = fetchAttendance();
-        console.log(attendances);
-    }
-
     return (
         <>
             <div className="testButton">
-                <button onClick={handleTestButton}>テスト</button>
+                <button>テスト</button>
             </div>
             <div id="div_selectmenu">
                 <select name="year" onChange={handleSelectedYear}>
@@ -94,7 +96,7 @@ const TableComponent = () => {
                         </tr>
                         {data.map((record, index) => (
                             //平日、土日、祝日を判定。振替休日
-                            <tr className={record.dayOfWeek==="日" || record.dayOfWeek === "土"?"dayoff":holidayJp.isHoliday(new Date(Number(selectedYear), Number(selectedMonth)-1, Number(record.attendanceDate)))?"publicHoliday" :""} key={index}>
+                            <tr className={record.className} key={index}>
                                 <td className="date-column">{record.attendanceDate}</td>
                                 <td className="weekday-column">{record.dayOfWeek}</td>
                                 <td>{record.startTime}</td>
