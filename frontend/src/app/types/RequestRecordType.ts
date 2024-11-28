@@ -1,5 +1,6 @@
 export default interface RequestRecordType {
-    requestId : string,
+    
+    requestId : number,
     attendanceDate : string,
     employeeId : string,
     requestDate : string,
@@ -10,6 +11,6 @@ export default interface RequestRecordType {
     actualTime : string,
     overTime : string,
     notes : string,
-    isApproved : string,
+    isApproved : number,
     ApprovedDate : string
 };

@@ -33,9 +33,13 @@ CREATE TABLE IF NOT EXISTS attendance(
 
 CREATE TABLE IF NOT EXISTS request(
     request_id INT,
-    attendance_date DATE,
+    attendance_id INT,
     employee_id INT(4) NOT NULL,
     request_date DATETIME NOT NULL,
+    year CHAR(4) NOT NULL,
+    month CHAR(2) NOT NULL,
+    day CHAR(2) NOT NULL,
+    day_of_week INT(1),
     start_time TIME DEFAULT '09:00:00',
     finish_time TIME DEFAULT '18:00:00',
     break_time TIME DEFAULT '01:00:00',
@@ -43,6 +47,7 @@ CREATE TABLE IF NOT EXISTS request(
     notes VARCHAR(10) DEFAULT '' NOT NULL,
     is_approved INT(1) DEFAULT 0,
     approved_date DATETIME,
-    PRIMARY KEY(request_id, attendance_date),
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+    PRIMARY KEY(request_id, attendance_id),
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+    FOREIGN KEY (attendance_id) REFERENCES attendance(attendance_id)
 );
