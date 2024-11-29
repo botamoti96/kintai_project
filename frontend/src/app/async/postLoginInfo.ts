@@ -1,6 +1,6 @@
 
 export default async function postLoginInfo(employeeId:Number, password:string){
-    const url = "http://localhost:5000/api/login";
+    const url = "http://localhost:5000/api/login/test";
     
     const result = await fetch(url, {
         method : "POST",

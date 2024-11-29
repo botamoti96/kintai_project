@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MySql.Data.MySqlClient;
 
-namespace AttendanceAPI.Services{
+namespace LoginAPI.Services{
     public class LoginService{
         private string _connectionString;
         private ILogger _logger;
