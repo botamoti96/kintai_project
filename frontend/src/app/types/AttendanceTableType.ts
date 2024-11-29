@@ -1,5 +1,6 @@
 export default interface AttendanceTableType{
-    attendanceDate : string,
+    attendanceId : string,
+    day : string,
     employeeId : string,
     dayOfWeek : string,
     startTime : string,

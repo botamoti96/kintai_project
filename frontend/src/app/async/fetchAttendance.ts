@@ -1,9 +1,5 @@
 import AttendanceTableType from "@/app/types/AttendanceTableType";
 
-export interface Attendances{
-    attendances: AttendanceTableType[];
-}
-
 export default async function fetchAttendance(){
     const url = "http://localhost:5000/api/attendance/test";
     return await fetch(url, {

@@ -1,55 +1,55 @@
 using MySql.Data.MySqlClient;
 using AttendanceAPI.Models;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Formatters;
 
-namespace AttendanceAPI.Services 
+namespace AttendanceAPI.Services
 {
-    public class AttendanceService 
+    public class AttendanceService
     {
         private readonly string _connectionString;
-        public AttendanceService(string connectionString) 
+
+        public AttendanceService(string connectionString)
         {
             _connectionString = connectionString;
         }
 
+        // ユーザーIDを取得
         public int GetUserId(string userName)
         {
-            int id=0;
-            using(var connection = new MySqlConnection(_connectionString))
+            int id = 0;
+            using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
                 string query = "SELECT employee_id FROM employee WHERE employee_name = @name";
-                Console.WriteLine(userName);
-                using(var command = new MySqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@name", userName);
-                    Console.WriteLine(command.CommandText);
-                    using(var reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
-                        if(reader.Read()){
+                        if (reader.Read())
+                        {
                             id = reader.GetInt32("employee_id");
                         }
                     }
                 }
             }
-            Console.WriteLine("id:" +id);
             return id;
         }
 
-        public List<Attendance> GetMonthlyAttendance(int userId, int year, int month) 
+        // 月間勤怠情報を取得
+        public List<Attendance> GetMonthlyAttendance(int userId, int year, int month)
         {
             var attendances = new List<Attendance>();
-            using (var connection = new MySqlConnection(_connectionString)){
+            using (var connection = new MySqlConnection(_connectionString))
+            {
                 connection.Open();
                 string query = "SELECT day, day_of_week, start_time, finish_time, break_time, over_time, notes FROM attendance WHERE employee_id = @userId && year = @year && month = @month";
-                using(var command = new MySqlCommand(query, connection))
+                using (var command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@userId", userId);
                     command.Parameters.AddWithValue("@year", year);
                     command.Parameters.AddWithValue("@month", month);
-                    Console.WriteLine(command.CommandText);
-                    using(var reader = command.ExecuteReader())
+                    using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -70,6 +70,7 @@ namespace AttendanceAPI.Services
             return attendances;
         }
 
+        // すべての勤怠情報を取得
         public List<Attendance> GetAllAttendances()
         {
             var attendances = new List<Attendance>();
@@ -83,17 +84,17 @@ namespace AttendanceAPI.Services
                     {
                         attendances.Add(new Attendance
                         {
-                                AttendanceId = reader.GetInt32("attendance_id"),
-                                Year = reader.GetString("year"),
-                                Month = reader.GetString("month"),
-                                Day = reader.GetString("day"),
-                                EmployeeId = reader.GetInt32("employee_id"),
-                                DayOfWeek = reader.GetInt32("day_of_week"),
-                                StartTime = reader.GetTimeSpan("start_time"),
-                                FinishTime = reader.GetTimeSpan("finish_time"),
-                                BreakTime = reader.GetTimeSpan("break_time"),
-                                OverTime = reader.GetTimeSpan("over_time"),
-                                Notes =  reader.GetString("notes")
+                            AttendanceId = reader.GetInt32("attendance_id"),
+                            Year = reader.GetString("year"),
+                            Month = reader.GetString("month"),
+                            Day = reader.GetString("day"),
+                            EmployeeId = reader.GetInt32("employee_id"),
+                            DayOfWeek = reader.GetInt32("day_of_week"),
+                            StartTime = reader.GetTimeSpan("start_time"),
+                            FinishTime = reader.GetTimeSpan("finish_time"),
+                            BreakTime = reader.GetTimeSpan("break_time"),
+                            OverTime = reader.GetTimeSpan("over_time"),
+                            Notes = reader.GetString("notes")
                         });
                     }
                 }
@@ -104,7 +105,11 @@ namespace AttendanceAPI.Services
         // ログイン認証用メソッド
         public (string employeeNumber, string password) GetUserCredentials(string employeeNumber)
         {
-            string password = null;
+<<<<<<< HEAD
+            string? password = null;
+=======
+            string password = "";
+>>>>>>> ed6f44eb162758d8cdd4d8c203020fc7281fbe81
             using (var connection = new MySqlConnection(_connectionString))
             {
                 connection.Open();
@@ -120,7 +125,14 @@ namespace AttendanceAPI.Services
                     }
                 }
             }
-            return (employeeNumber, password);
+
+            // パスワードがnullの場合、例外をスロー
+            if (password == null)
+            {
+                throw new Exception("Password not found for the given employee number.");
+            }
+
+            return (employeeNumber, password); // 必ずパスワードを返す
         }
     }
 }
