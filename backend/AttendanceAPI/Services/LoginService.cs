@@ -2,7 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MySql.Data.MySqlClient;
 
-namespace AttendanceAPI.Services{
+namespace LoginAPI.Services{
     public class LoginService{
         private string _connectionString;
         private ILogger _logger;
@@ -16,32 +16,37 @@ namespace AttendanceAPI.Services{
         public string Login(LoginRequest loginRequest)
         {
             Console.WriteLine("ログイン処理開始します");
-            string message ;
+            Console.WriteLine(loginRequest.EmployeeId + ":" + loginRequest.Password);
+            string message = "";
             try
             {
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     connection.Open();
-                    var command = new MySqlCommand("SELECT * FROM employee WHERE EmployeeId = @EmployeeId", connection);
+
+                    var command = new MySqlCommand("SELECT * FROM employee WHERE employee_id = @EmployeeId", connection);
                     command.Parameters.AddWithValue("@EmployeeId", loginRequest.EmployeeId);
                     var reader = command.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        var storedPasswordHash = reader["PasswordHash"].ToString();
-
-                        if (BCrypt.Net.BCrypt.Verify(loginRequest.Password, storedPasswordHash))
-                        {
+                        var storedPasswordHash = reader["password"].ToString();
+                        Console.WriteLine(storedPasswordHash);
+                        // if (BCrypt.Net.BCrypt.Verify(loginRequest.Password, storedPasswordHash))
+                        // {
+                        //     message = "ログイン成功";
+                        // }
+                        if (storedPasswordHash == loginRequest.Password){
                             message = "ログイン成功";
                         }
                         else
                         {
-                            message = "ログインに失敗しました";
+                            message = "1. ログインに失敗しました";
                         }
                     }
                     else
                     {
-                        message = "ログインに失敗しました";
+                        message = "2. ログインに失敗しました";
                     }
                 }
             }

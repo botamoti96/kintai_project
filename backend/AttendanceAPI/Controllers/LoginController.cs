@@ -3,7 +3,8 @@ using MySql.Data.MySqlClient; // MySQLの接続に必要
 using BCrypt.Net;
 using ZstdSharp.Unsafe;
 using AttendanceAPI.Services;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders; // パスワードのハッシュ化に必要
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using LoginAPI.Services; // パスワードのハッシュ化に必要
 
 namespace YourNamespace
 {
@@ -22,6 +23,7 @@ namespace YourNamespace
         [Route("test")]
         public IActionResult PostLoginInfo([FromBody] LoginRequest loginRequest){
             string result = _loginService.Login(loginRequest);
+            Console.WriteLine(result);
             return Ok();
         }
     }

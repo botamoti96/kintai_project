@@ -1,6 +1,6 @@
 
 export default async function postLoginInfo(employeeId:Number, password:string){
-    const url = "http://localhost:5000/api/login";
+    const url = "http://localhost:5000/api/login/test";
     
     const result = await fetch(url, {
         method : "POST",
@@ -8,7 +8,7 @@ export default async function postLoginInfo(employeeId:Number, password:string){
             'Content-Type': 'application/json', // これが重要！
         },
         body: JSON.stringify({
-            "EmployeeId" : employeeId,
+            "EmployeeId" : employeeId.toString(),
             "Password": password
         })
     }).then((response: Response) => {
