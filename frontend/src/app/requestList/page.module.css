@@ -2,7 +2,6 @@
 .container {
   font-family: Arial, sans-serif; /* フォント設定 */
   background-color: #f9f9f9; /* 背景色 */
-  height: 100vh; /* vhで指定することで、高さを画面全体に設定 */
   display: flex; /* フレックスボックスでレイアウト */
   flex-direction: column; /* 縦方向のレイアウトを指定 */
   align-items: center; /* 横方向中央揃え */

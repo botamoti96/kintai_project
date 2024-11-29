@@ -4,18 +4,18 @@ using RequestAPI.Services;
 
 namespace RequestAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [ApiController]//Web Apiコントローラーであることを明示するアノテーション
+    [Route("api/[controller]")]//エンドポイント(ここに向けてPOSTやGETをする)
 
-    public class RequestController : ControllerBase
+    public class RequestController : ControllerBase//ContorollerBaseは基本クラス
     {
         private readonly RequestService _requestService;
 
-        public RequestController(RequestService requestService)
+        public RequestController(RequestService requestService)//コンストラクタ
         {
             _requestService = requestService;
         }
-
+        //申請一覧を得るためのエンドポイント？
         [HttpGet]
 
         public IActionResult GetRequests()

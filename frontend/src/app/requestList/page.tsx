@@ -96,56 +96,33 @@ const requestPage = () => {
 
 //テーブルコンポーネント
 const RequestTable = () => {
-  // //データ配列
-  // const date = [
-  //   {
-  //     requestId: 1,
-  //     year: "2024",
-  //     month: "11",
-  //     day: "1",
-  //     dayOfWeek: "金",
-  //     startTime: "09:00",
-  //     finishTime: "17:00",
-  //     breakTime: "01:00",
-  //     realTime: "07:00",
-  //     overTime: "00:00",
-  //     note: "早退",
-  //     isApproved: 0,
-  //   },
-  //   {
-  //     requestId: 2,
-  //     year: "2024",
-  //     month: "11",
-  //     day: "5",
-  //     dayOfWeek: "火",
-  //     startTime: "10:00",
-  //     finishTime: "18:00",
-  //     breakTime: "01:00",
-  //     realTime: "07:00",
-  //     overTime: "00:00",
-  //     note: "遅刻",
-  //     isApproved: 1,
-  //   },
-  //   {
-  //     requestId: 3,
-  //     year: "2024",
-  //     month: "11",
-  //     day: "6",
-  //     dayOfWeek: "水",
-  //     startTime: "09:00",
-  //     finishTime: "12:00",
-  //     breakTime: "00:00",
-  //     realTime: "03:00",
-  //     overTime: "00:00",
-  //     note: "午後半休有給",
-  //     isApproved: 2,
-  //   },
-  // ];
-
   //[変数名, セッターメソッド名] = useState(ここで変数の型を指定する。ストリングなら””を入れたらいい)
   const [selectedYear, setSelectedYear] = useState("2024");
   const [selectedMonth, setSelectedMonth] = useState("11");
   const [list, setList] = useState<RequestRecordType[]>([]);
+
+  //numberから曜日に変換する関数です。
+  const DayOfWeekJudge = (dayOfWeekNumber: number) => {
+    const dayOfWeeks = () => {
+      switch (dayOfWeekNumber) {
+        case 0:
+          return <span>日</span>; //spanは単語などを囲むタグ
+        case 1:
+          return <span>月</span>;
+        case 2:
+          return <span>火</span>;
+        case 3:
+          return <span>水</span>;
+        case 4:
+          return <span>木</span>;
+        case 5:
+          return <span>金</span>;
+        case 6:
+          return <span>土</span>;
+      }
+    };
+    return <>{dayOfWeeks()}</>;
+  };
 
   //これでデータをバックエンドから取ってくる↓
 
@@ -311,10 +288,10 @@ const RequestTable = () => {
                 </thead>
                 <tbody className={styles.black}>
                   <tr>
+                    <td className={styles.thLayout}>{list[index].day}</td>
                     <td className={styles.thLayout}>
-                      {list[index].attendanceDate}
+                      <>{DayOfWeekJudge(list[index].dayOfWeek)}</>
                     </td>
-                    <td className={styles.thLayout}>{list[index].dayOfWeek}</td>
                     <td className={styles.thLayout}>{list[index].startTime}</td>
                     <td className={styles.thLayout}>
                       {list[index].finishTime}
