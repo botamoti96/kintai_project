@@ -23,6 +23,7 @@ namespace YourNamespace
         [Route("test")]
         public IActionResult PostLoginInfo([FromBody] LoginRequest loginRequest){
             string result = _loginService.Login(loginRequest);
+            Console.WriteLine(result);
             return Ok();
         }
     }

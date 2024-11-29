@@ -8,7 +8,7 @@ export default async function postLoginInfo(employeeId:Number, password:string){
             'Content-Type': 'application/json', // これが重要！
         },
         body: JSON.stringify({
-            "EmployeeId" : employeeId,
+            "EmployeeId" : employeeId.toString(),
             "Password": password
         })
     }).then((response: Response) => {
