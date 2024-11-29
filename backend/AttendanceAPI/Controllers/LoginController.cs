@@ -8,7 +8,7 @@ namespace YourNamespace
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly string _connectionString = "Server=localhost;Database=kintai_db;User=root;Password=mossan";
+        private readonly string _connectionString = "Server=localhost;Database=kintai;User=kintaiu;Password=kintaip";
 
         // ログイン用のPOSTメソッド
         [HttpPost]
@@ -53,9 +53,4 @@ namespace YourNamespace
             }
         }
     }
-    
-public class LoginRequest
-{
-    public string EmployeeId { get; set; } = "";
-    public string Password { get; set; } = "";
 }

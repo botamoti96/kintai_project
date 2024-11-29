@@ -1,11 +1,23 @@
+"use client"
+
 import React from "react";
 import Link from "next/link"; // Next.jsのLinkコンポーネントをインポート
+import postLoginInfo from "../async/postLoginInfo";
+
+const handleTestButtonClick = () => {
+  postLoginInfo(1,  "enuta3");
+}
 
 // ログイン画面のコンポーネント
 const Login: React.FC = () => {
   return (
     <div style={styles.container}>
       {/* ログインフォームのコンテナ */}
+      <div className="testButton">
+        <button onClick={handleTestButtonClick}>
+          テスト用ボタン
+        </button>
+      </div>
       <div style={styles.formContainer}>
         <h1 style={styles.title}>勤怠管理システム</h1> {/* タイトル */}
         <form>
