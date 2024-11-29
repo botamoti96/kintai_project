@@ -1,10 +1,13 @@
 export default interface RequestRecordType {
     
     requestId : number,
-    attendanceDate : string,
+    attendanceId : number,
     employeeId : string,
     requestDate : string,
-    dayOfWeek : string,
+    year : string,
+    month : string,
+    day : string,
+    dayOfWeek : number,
     startTime : string,
     finishTime : string,
     breakTime : string,
