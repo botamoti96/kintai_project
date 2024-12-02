@@ -1,108 +1,38 @@
-"use client";
+import styles from "./CreateRequestTable.module.css";
 
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
-import styles from "./page.module.css";
-import fetchRequestTable from "../async/fetchRequestTable";
+
+
 
 import { NextPage } from "next";
-import AttendanceRecordType from "../types/AttendanceRecordType";
-import CreateTableFunc from "../showAttendanceRecord/function/CreateTable";
-import RequestRecordType from "../types/RequestRecordType";
-import RequestTableType from "../types/RequestTableType";
+
+
+
+import RequestTableType from "@/app/types/RequestTableType";
 import { defaultOverrides } from "next/dist/server/require-hook";
+import fetchRequestList from "@/app/async/fetchRequestList";
 
-//ウィンドウの右上に配置するボタン
-const WindowButton = () => {
-  return (
-    <div className={styles.windowButtons}>
-      {/* ウィンドウボタン：黄色、緑、赤 */}
-      <div
-        className={styles.windowButton}
-        style={{ backgroundColor: "yellow" }}
-      ></div>
-      <div
-        className={styles.windowButton}
-        style={{ backgroundColor: "green" }}
-      ></div>
-      <div
-        className={styles.windowButton}
-        style={{ backgroundColor: "red" }}
-      ></div>
-    </div>
-  );
-};
 
-//ウィンドウの左上に配置するメニューバー
-const MenuBar = () => {
-  // プルダウンメニューの表示状態を管理
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // メニューが開いているかどうか
-  const menuRef = useRef<HTMLDivElement | null>(null); // メニューの参照を保持
-  return (
-    <div>
-      <div className={styles.menuBar}>
-        <div
-          className={styles.menuIcon}
-          onClick={() => setIsMenuOpen(!isMenuOpen)} // メニューアイコンをクリックした時に開閉
-        >
-          &#9776;
-        </div>
 
-        {/* プルダウンメニュー */}
-        {isMenuOpen && (
-          <div ref={menuRef} className={styles.dropdownMenu}>
-            <Link href="../time_card">
-              <div className={styles.menuItem}>出退勤打刻</div>
-            </Link>
-            <Link href="../showAttendanceRecord">
-              <div className={styles.menuItem}>出勤簿履歴表示</div>
-            </Link>
-            <Link href="../request">
-              <div className={styles.menuItem}>新規申請書の作成</div>
-            </Link>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 
-//タイトル
-const Header = () => {
-  return <h1 className="underline">申請承認履歴一覧</h1>;
-};
 
-const Homeback = () => {
-  return <Link href="/">ホームに戻る</Link>;
-};
+
 
 const requestPage = () => {
   return (
     <div className={styles.container}>
-      <MenuBar />
-      <Header />
-      <div className={styles.header}>
-        <WindowButton />
-      </div>
-
       <br></br>
-
       <RequestTable />
-
-      <br></br>
-      <Homeback />
+      <br></br> 
     </div>
   );
 };
 
 //テーブルコンポーネント
 const RequestTable = () => {
-  //[変数名, セッターメソッド名] = useState(ここで変数の型を指定する。ストリングなら””を入れたらいい)
-  const [selectedYear, setSelectedYear] = useState("2024");
-  const [selectedMonth, setSelectedMonth] = useState("11");
-  const [list, setList] = useState<RequestRecordType[]>([]);
-
+  
   //numberから曜日に変換する関数です。
   const DayOfWeekJudge = (dayOfWeekNumber: number) => {
     const dayOfWeeks = () => {
@@ -126,13 +56,17 @@ const RequestTable = () => {
     return <>{dayOfWeeks()}</>;
   };
 
-  //これでデータをバックエンドから取ってくる↓
-
   
 
+//[変数名, セッターメソッド名] = useState(ここで変数の型を指定する。ストリングなら””を入れたらいい)
+  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedMonth, setSelectedMonth] = useState("11");
+  const [list, setList] = useState<RequestTableType[]>([]);
+
+//これでデータをバックエンドから取ってくる↓
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchRequestTable(); // 非同期関数を呼び出してデータを取得
+      const data = await fetchRequestList(1, 2024, 1); // 非同期関数を呼び出してデータを取得
       if (data) {
         setList(data);
       }
@@ -143,8 +77,8 @@ const RequestTable = () => {
 
   //申請一覧を年月で指定するためのプルダウンコンポーネント
   const HandleSelectedYearMonth = () => {
-    const [data, setData] = useState<RequestRecordType[]>(
-      CreateTableFunc(new AttendanceTableType[], "0", "0")
+    const [data, setData] = useState<RequestTableType[]>(
+      CreateTableFunc(new RequestTableType[], "0", "0")
     );
 
     useEffect(() => {
@@ -201,6 +135,127 @@ const RequestTable = () => {
       </>
     );
   };
+
+
+  //申請のテーブルを作ってくれるコンポーネント
+  const CreatRequest = (dataset: RequestTableType[], year:string, month:string) => {
+    const RequestRecordDate: RequestTableType[] =[];
+
+  //datasetの中身がない場合
+    if(dataset.length===0){
+      return RequestRecordDate;
+    }
+
+  //ある分のレコード分のテーブルを作成するようのテンプレ
+    {dataset.length > 0
+      ? dataset.map((item, index) => (
+          <div key={item.requestId} className={styles.requestContainer}>
+            <table className={styles.table}>
+              <caption className={styles.caption}>
+                {year}年{" "}
+                {month}月 勤務実績通知書
+              </caption>
+              <thead className={styles.abc}>
+                <tr>
+                  <th scope="row" colSpan={3} className={styles.thLayout}>
+                    {" "}
+                    就業場所{" "}
+                  </th>
+                  <td colSpan={3} className={styles.tdMainLayout}>
+                    {item.workplace}
+                  </td>
+                  <th scope="row" colSpan={1} className={styles.thLayout}>
+                    {" "}
+                    部署名{" "}
+                  </th>
+                  <td colSpan={2} className={styles.tdMainLayout}>
+                    {item.department}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row" colSpan={3} className={styles.thLayout}>
+                    就業時間
+                  </th>
+                  <td colSpan={3} className={styles.tdMainLayout}>
+                    <time dateTime="2024-11-11">9:00-18:00</time>
+                  </td>
+                  <th scope="row" colSpan={1} className={styles.thLayout}>
+                    {" "}
+                    氏名{" "}
+                  </th>
+                  <td colSpan={2} className={styles.tdMainLayout}>
+                    田中一郎
+                  </td>
+                </tr>
+              </thead>
+              <thead className={styles.tdlayout}>
+                <tr>
+                  <th scope="col" className={styles.thLayout}>
+                    日
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    曜日
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    始業時間
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    終業時間
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    休憩時間
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    実質時間数
+                  </th>
+                  <th scope="col" className={styles.thLayout}>
+                    時間外勤務 時間数
+                  </th>
+                  <th scope="col" colSpan={2} className={styles.thLayout}>
+                    備考
+                  </th>
+                </tr>
+              </thead>
+              <tbody className={styles.black}>
+                <tr>
+                  <td className={styles.thLayout}>{list[index].day}</td>
+                  <td className={styles.thLayout}>
+                    <>{DayOfWeekJudge(list[index].dayOfWeek)}</>
+                  </td>
+                  <td className={styles.thLayout}>{list[index].startTime}</td>
+                  <td className={styles.thLayout}>
+                    {list[index].finishTime}
+                  </td>
+                  <td className={styles.thLayout}>{list[index].breakTime}</td>
+                  <td className={styles.thLayout}>
+                    {/*list[index].realTime*/}どうにかする
+                  </td>
+                  <td className={styles.thLayout}>{list[index].overTime} </td>
+                  <td colSpan={2} className={styles.thLayout}>
+                    {list[index].notes}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br></br>
+            {/*承認されているかの判定↓*/}
+            <button className={styles.label}>
+              {(() => {
+                if (list[index].isApproved === 0) {
+                  return <span>承認待ち</span>;
+                } else if (list[index].isApproved === 1) {
+                  return <span>承認</span>;
+                } else {
+                  return <span>承認却下</span>;
+                }
+              })()}
+            </button>
+            <br></br>
+          </div>
+        ))
+      : "loading..."}
+  }
 
   const list2: [] = [];
 
