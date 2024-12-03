@@ -28,17 +28,10 @@ builder.Services.AddScoped<AttendanceService>(provider =>
 builder.Services.AddScoped<RequestService>(provider =>
     new RequestService(connectionString)); // connectionStringを渡す
 
-<<<<<<< HEAD
-
-builder.Services.AddScoped<LoginService>(provider =>
-    new LoginService(connectionString)); // connectionStringを渡す
-
-=======
 builder.Services.AddScoped<LoginService>(provider =>
     new LoginService(connectionString)); // connectionStringを渡す
 
 
->>>>>>> 79bae6129d424e572aee46f0e20172206a5bfdf2
 var app = builder.Build();
 
 // CORSミドルウェアを追加

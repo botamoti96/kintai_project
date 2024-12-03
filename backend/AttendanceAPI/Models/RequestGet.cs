@@ -6,9 +6,11 @@ namespace RequestGetAPI.Models
 {
     public class RequestGet
     {
+        public int RequestId { get; set; }
         public int EmployeeId { get; set; }
-        public string Year { get; set; }
-        public string Month { get; set; }
+        public string EmployeeName { get; set; }
+        public string Department { get; set; }
+        public string Workplace { get; set; }
         public string Day { get; set; }
         public int DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
